@@ -3,7 +3,7 @@
 
 # 15.4 Guardrails, evaluation, cost and latency control
 
-← [15.3 Tool calling and exposing services via MCP (Model Context Protocol)](../15.3-tool-calling-and-mcp/README.md) · [Module 15](../README.md) · [Phase 3](../../README.md)
+← [15.3 Tool calling and exposing services via MCP (Model Context Protocol)](../15.3-tool-calling-and-mcp/README.md) · [Module 15](../README.md) · [Phase 3](../../README.md) · [16.1 Capstone build](../../16-capstone-system-design-interviews/16.1-capstone-build/README.md) →
 
 > **Week 35** · Module 15: AI Integration with Spring AI · Website topic covered: *Guardrails, prompt injection, evaluation sets, cost and latency control, and keeping customer data out of prompts*
 

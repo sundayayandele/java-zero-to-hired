@@ -1,0 +1,47 @@
+## What this module gives you
+
+Two weeks to finish the phase the way an employer will judge it. In week 36 you stop adding features, close the gaps you've been carrying since `v0.1`, and make ITL Pay deployable by anyone on the team: a pipeline from commit to cluster, ADRs a newcomer can follow, diagrams and a runbook (topics 16.1 and 16.2). In week 37 you prove it works under load with a final report (16.3), then you practise the two conversations intermediate-level interviews are built on: designing a system you've never seen (16.4) and talking about the one you built (16.5).
+
+There's no new framework in this module. Everything uses the tools from Modules 10–15 and the [ITL Pay starter](../../../templates/itl-pay-starter/README.md). The work is finishing, writing and speaking, which is where many good engineers lose offers.
+
+**Weekly rhythm (20–25 hours):** read the lessons (15%), videos (5%), topic quizzes (5%), finishing and documenting `v1.0` (45%), and system-design and interview practice (30%).
+
+**Exit check for Module 16 (and Phase 3):** the five topic quizzes attempted (aim for 70%+), ITL Pay `v1.0` tagged and deployed, the capstone defence passed, the system-design interview and both mock interviews done with written feedback, and the end-of-phase exam passed (70%+).
+
+## Capstone step: ITL Pay `v1.0`
+
+Build on your `v0.6`, and deliver:
+
+- **Feature freeze and gap list:** by the end of week 36, every item left from `v0.1`–`v0.6` is either done, or written down as a known limitation with its risk. The starter's shortcuts are gone: balances in PostgreSQL, per-account locking, JWTs checked at the gateway and in every service, the ledger posting every transfer.
+- **Tests:** the test pyramid from Phase 2 in every service, contract tests between the services that call each other, and a smoke test that runs against the deployed system after every deployment.
+- **Deployment:** a pipeline that builds, tests and scans every service, pushes images tagged with the commit, and deploys through GitOps to a running cluster (a managed cluster or a k3s VPS) that stays up for your defence. Rollback is one `git revert`.
+- **Docs:** a README a new engineer can follow, C4 context and container diagrams, a sequence diagram of the transfer saga, an ADR index (ADRs 1–10, superseded ones marked) and ADR 11 (how a release reaches production and how it's rolled back).
+- **Runbook:** one entry per paging alert, plus deploy, rollback, dead-letter replay, database restore and secret rotation, each tried at least once.
+- **Observability and load:** the dashboard and SLOs from `v0.4` on the deployed system, and a final load-test report: expected peak, twice the peak and a 30-minute soak, with findings, fixes and before-and-after numbers.
+- **Defence:** a 30-minute capstone defence ([format and rubric](../../../docs/assessments/capstone-defence.md#phase-3-the-itl-pay-defence)).
+
+## Interviews
+
+- **System-design interview:** 45 minutes with a mentor, designing an unfamiliar banking or fintech system, scored with the [system-design interview rubric](../../../docs/assessments/system-design-interview.md) (topic 16.4).
+- **Mock interviews:** one technical (60 minutes) and one behavioural (45 minutes), with written feedback and a short improvement plan (topic 16.5).
+- **End-of-phase exam:** 60 scenario questions on every Phase 3 topic, 2 hours, pass mark 70% ([exam information](../exam/README.md)).
+
+## Module projects
+
+The capstone is this module's project. If your mentor agreed an alternative domain by week 27, deliver it to the same `v1.0` requirements; the four domains in the programme are:
+
+### Project 16.A: Digital wallet and payments platform
+
+ITL Pay as built through this phase: accounts, transfers with a saga, a double-entry ledger, fraud screening, notifications, end-of-day interest, FX quotes and a support assistant.
+
+### Project 16.B: Loan origination system
+
+Applications, credit checks against a simulated bureau, a decision workflow with manual review, offers, disbursement into an account and a repayment schedule. **The hard parts:** a long-running saga with human steps, an audit trail of every decision, and an end-of-day batch for arrears.
+
+### Project 16.C: Marketplace backend
+
+Catalogue, stock, orders, payments held in escrow and released on delivery, sellers' payouts and refunds. **The hard parts:** stock reservations that expire, an order saga across stock, payment and delivery, and idempotent payouts.
+
+### Project 16.D: Ride-hailing or logistics backend
+
+Drivers' locations streamed in, matching jobs to drivers, trip or delivery states, pricing with quotes, and settlement to drivers. **The hard parts:** a high-rate location stream (a reactive service), matching under concurrency, and quotes that expire.

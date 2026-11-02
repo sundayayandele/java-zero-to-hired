@@ -23,4 +23,4 @@ git clone https://github.com/sundayayandele/java-zero-to-hired.git
 Or fork it on GitHub (the **Fork** button) if your course asks you to work in your own copy. No Git yet? Use
 **Code > Download ZIP**.
 
-Questions go to your course's *Questions and help* forum, or to mentor office hours.
+Questions go to your course's *Questions and help* forum (free). Live hours with a mentor are the only paid part of the course.

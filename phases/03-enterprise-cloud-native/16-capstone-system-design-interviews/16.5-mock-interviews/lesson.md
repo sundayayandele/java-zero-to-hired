@@ -1,0 +1,146 @@
+## What you will be able to do
+
+- Know what an intermediate backend interview loop looks like, and what each round is testing.
+- Tell the story of ITL Pay in two minutes, in ten, and in a 45-minute deep dive.
+- Answer behavioural questions with the STAR structure and stories drawn from your own work in this programme.
+- Handle the technical questions intermediate roles ask: Spring internals, transactions, concurrency, Kafka, Kubernetes and debugging production.
+- Turn feedback from your two mock interviews into a short, specific improvement plan.
+
+## Why this matters in a bank or fintech
+
+At intermediate level, interviewers assume you can code; the screen and the take-home check that quickly. The offer is decided in conversations: can you explain a system you built, defend its decisions, talk about a failure honestly, and show you'd be safe to give production access to? Banks add a further question to every round: do you take money, security and regulation seriously? Two mock interviews with written feedback, done before real ones, are the cheapest way to find the gaps in your answers while they cost nothing.
+
+## 1. The interview loop
+
+A typical loop for an intermediate Java backend role at a bank or fintech:
+
+| Round | Length | What it tests |
+| --- | --- | --- |
+| Recruiter screen | 20–30 min | Motivation, salary, notice period, right to work |
+| Online assessment or coding screen | 60–90 min | Data structures and algorithms (the practice track), sometimes SQL |
+| Technical interview | 60 min | Java, Spring, databases, concurrency, testing, and a deep dive into something you built |
+| System design | 45–60 min | Topic 16.4 |
+| Behavioural or hiring manager | 45 min | How you work with others, handle problems and learn |
+
+Your two mock interviews cover the technical and behavioural rounds. Topic 16.4 covers system design, and the practice track covers the coding screen.
+
+## 2. Your project, at three lengths
+
+Prepare the ITL Pay story at three lengths, and practise each aloud until it sounds natural, not memorised.
+
+**Two minutes** (for "tell me about a project"): the problem, your system in one sentence, the two hardest problems you solved, and one number. For example: "ITL Pay is a payments backend: accounts, transfers and a double-entry ledger as separate services on Kubernetes. The hardest parts were making transfers safe when services fail, which I solved with an outbox and a saga with compensation, and keeping it fast on salary day: my load test found the outbox relay falling behind at twice peak, and batching it took p99 from 1.8 s to 240 ms."
+
+**Ten minutes** (a walk-through): add a diagram, one request end to end, the main ADRs and one thing you'd do differently.
+
+**Forty-five minutes** (a deep dive): be ready to open any file, explain any ADR, discuss the load-test report, and say what breaks first at ten times the load. This is the same preparation as your capstone defence.
+
+## 3. Behavioural questions and STAR
+
+Behavioural questions start with "Tell me about a time…". Answer with **STAR**:
+
+- **Situation:** the context, in one or two sentences.
+- **Task:** what you had to achieve.
+- **Action:** what *you* did, in detail. Say "I", not "we". This should be most of the answer.
+- **Result:** what happened, with a number if you can, and what you learned.
+
+Aim for two minutes per answer. Prepare six stories from your work in this programme that between them cover the questions banks ask most:
+
+| Question | A story you might use |
+| --- | --- |
+| A difficult bug you fixed | The soak-test finding in 16.3, or a flaky test you made reliable in lab 7.D |
+| A decision you made with incomplete information | Choosing reactive or virtual threads in 14.3 from your benchmark |
+| A time you were wrong | An ADR you superseded, and why |
+| A conflict or disagreement | A code review where you and a peer disagreed, and how you settled it |
+| Working under pressure | Feature freeze in week 36 and how you chose what to drop |
+| Learning something new fast | Kafka, Kubernetes or Spring AI in two weeks |
+
+Two more that banks ask often: "Tell me about a time you found a security or data problem" and "Tell me about a time you made a mistake in production". If you haven't worked in production, use your deployed capstone, and be honest that it's a training system.
+
+## 4. Technical questions for intermediate roles
+
+Expect questions that check you understand what's underneath the frameworks. Practise answering each of these in one or two minutes:
+
+- **Spring:** What does `@Transactional` do, and why doesn't it work when a method calls another method on the same class? How does Spring Boot's auto-configuration decide what to create?
+- **Data:** What isolation level do you use for a balance check and debit, and why? What's the N+1 problem and how do you spot it? When would you add an index, and when would it hurt?
+- **Concurrency:** Two transfers debit the same account at once. What can go wrong, and how do you prevent it? What do virtual threads change?
+- **Kafka:** How do you avoid processing a message twice? What happens to ordering when you add partitions? What do you do with a message that always fails?
+- **Kubernetes:** What's the difference between liveness and readiness probes, and what goes wrong if you get them backwards? How does a rolling update avoid downtime?
+- **Production:** p99 latency doubled after a release. Walk me through how you'd find out why. (Dashboards, traces, the diff, a rollback first if customers are affected.)
+- **Security:** How does your service know who the caller is? How would one customer read another's data, and what stops them?
+
+When you don't know, say so and reason aloud: "I haven't used that, but I'd expect it to work like…, and I'd check by…". Interviewers respect that far more than a confident guess.
+
+## 5. Questions to ask them
+
+At the end, you'll be asked "Do you have any questions?". Have three ready. Good ones show you think about running software, not only writing it:
+
+- "How does code get from a pull request to production here, and how long does it take?"
+- "What does on-call look like for this team?"
+- "What's the biggest technical problem the team is working on this year?"
+- "How do you decide what to work on: who sets priorities?"
+
+Avoid asking only about salary and holidays in a technical round; the recruiter covers those.
+
+## 6. The mock interviews
+
+You do two, each booked with a mentor or an experienced engineer your mentor approves:
+
+- **Technical mock (60 minutes):** a 15-minute deep dive into ITL Pay, then questions like section 4, and a short debugging scenario.
+- **Behavioural mock (45 minutes):** five or six STAR questions, plus "tell me about yourself" and "why this role?".
+
+Treat them as real: camera on, quiet room, dressed as you would be, on time. Your interviewer writes feedback against three things: **content** (correct, specific, your own work), **structure** (clear, the right length, STAR where it fits) and **presence** (calm, honest, listens to the question).
+
+## 7. From feedback to a plan
+
+Within 24 hours of each mock, write a short improvement plan in your portfolio repository:
+
+1. The **three** most important points from the feedback, in your own words.
+2. For each, **one** concrete action and a date: "Rewrite my 'time I was wrong' story with a number in the result, and record it by Friday."
+3. One thing that went **well**, to keep.
+
+Then practise the weak answers again, aloud and recorded. Most people improve more between their first and second mock than in weeks of reading.
+
+## Worked example: fixing a weak answer
+
+In her behavioural mock, Ngozi was asked "Tell me about a difficult bug." Her answer lasted four minutes, said "we" throughout, and ended without a result. The feedback: *too long, unclear what you did, no outcome.*
+
+Her rewrite, two minutes long:
+
+- **S:** "In my capstone's 30-minute soak test, memory in the transfers service climbed steadily until the pod restarted."
+- **T:** "I had to find the leak before my release, without guessing."
+- **A:** "I took two heap dumps 10 minutes apart and compared them in Eclipse MAT. A cache of FX quotes had no size limit or expiry, so every quote stayed forever. I replaced it with Caffeine with a 30-second expiry and a 10,000-entry limit, and added a test that fills it past the limit."
+- **R:** "Memory stayed flat for a 2-hour soak, and I added a heap-usage alert. I now set a limit on every cache by default."
+
+She recorded it twice, and in her next real interview it was the answer the panel asked follow-up questions about.
+
+## Common mistakes
+
+- Memorising answers word for word, so they sound recited and fall apart at the first follow-up.
+- Saying "we" for everything, so the interviewer can't tell what you did.
+- Stories with no result, or a result with no number.
+- Pretending to know something; bluffing is easy to spot and hard to recover from.
+- Criticising a past employer, team or teacher.
+- Having no questions to ask at the end.
+- Treating the mock as a formality, so the feedback is about nerves, not answers.
+- Getting feedback and not acting on it before the next interview.
+
+## Practice
+
+1. Write and time your two-minute and ten-minute ITL Pay stories, and record both.
+2. Write six STAR stories using the table in section 3, each under 2 minutes aloud.
+3. Answer every question in section 4 aloud in one or two minutes, and note the ones you couldn't answer; read up and try again.
+4. Write your three questions for interviewers.
+5. Book and do your **technical mock** and **behavioural mock**; within 24 hours of each, write your improvement plan (section 7).
+6. Update your CV and LinkedIn with ITL Pay `v1.0`: one line on what it is, two on what you did, with a number, and a link to the repository and the load-test report.
+
+## Key terms
+
+Interview loop, recruiter screen, coding screen, technical interview, behavioural interview, hiring manager, project deep dive, STAR (situation, task, action, result), elevator pitch, follow-up question, `@Transactional` self-invocation, isolation level, N+1 query, liveness and readiness probes, rolling update, mock interview, feedback, improvement plan.
+
+## Further reading
+
+- [Tech Interview Handbook: behavioural interview questions](https://www.techinterviewhandbook.org/behavioral-interview-questions/)
+- [Tech Interview Handbook: final questions to ask](https://www.techinterviewhandbook.org/final-questions/)
+- [Amazon: leadership principles (the source of many behavioural questions)](https://www.amazon.jobs/content/en/our-workplace/leadership-principles)
+- [Spring Framework: declarative transaction management](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative.html)
+- [Phase 2: getting hired guide](../../../02-professional-backend/getting-hired/README.md)

@@ -201,13 +201,13 @@ Projects: Non-blocking rates/quotes streaming endpoint; Benchmark: MVC + virtual
 
 Projects: Customer-support assistant grounded in your API docs; Transaction-query agent that calls your services as tools.
 
-### Module 16: Capstone, System Design & Interview Prep (weeks 36-37)
+### [Module 16: Capstone, System Design & Interview Prep](phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/README.md) (weeks 36-37)
 
-- 16.1 Capstone build: digital wallet, loan origination, marketplace or logistics backend
-- 16.2 Live deployment on Kubernetes with CI/CD; ADRs, runbook and architecture diagrams
-- 16.3 Observability dashboard and load-test report
-- 16.4 System-design interview practice and STAR stories
-- 16.5 Two mock interviews: technical and behavioural
+- [16.1 Capstone build: digital wallet, loan origination, marketplace or logistics backend](phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/16.1-capstone-build/README.md)
+- [16.2 Live deployment on Kubernetes with CI/CD; ADRs, runbook and architecture diagrams](phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/16.2-deployment-adrs-runbook/README.md)
+- [16.3 Observability dashboard and load-test report](phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/16.3-observability-and-load-report/README.md)
+- [16.4 System-design interview practice and STAR stories](phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/16.4-system-design-interviews/README.md)
+- [16.5 Two mock interviews: technical and behavioural](phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/16.5-mock-interviews/README.md)
 
 Projects: Digital wallet & payments platform; Loan origination system; Marketplace backend; Ride-hailing / logistics backend.
 

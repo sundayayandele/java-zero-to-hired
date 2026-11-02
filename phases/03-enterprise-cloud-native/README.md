@@ -7,8 +7,6 @@
 
 From "junior engineer who can ship a secure service" to "engineer a bank can trust with a distributed system": splitting a domain into services, event-driven processing with Kafka, batch jobs, Kubernetes and the cloud, observability and performance, reactive Java and AI features built with Spring AI. Instead of ten separate capstones, you build **one capstone system** that grows module by module, which is how real platforms grow and what intermediate-level interviews probe.
 
-> **Status: being built.** Modules 10 to 15 are ready; Module 16 is published when it's finished. The topic list and weekly plan below are final.
-
 > **Prerequisite:** Phases 1 and 2 (or equivalent): Spring Boot 4 services with JPA, Flyway, validation, Problem Details, security with OAuth2, a test pyramid with Testcontainers, Docker, and a CI pipeline with quality gates.
 
 ## How to study this phase
@@ -87,12 +85,12 @@ You may build an equivalent system in another domain (loan origination, a market
 | Module | Weeks | What you build |
 | --- | --- | --- |
 | [10. Microservices & Distributed Systems](10-microservices-distributed-systems/README.md) | 26–27 | Banking services (accounts, transfers, ledger) behind a gateway; e-commerce services as an alternative |
-| 11. Event-Driven Architecture with Kafka, and Batch Processing | 28–29 | Event-driven payments, real-time notifications, an audit pipeline and an end-of-day batch |
-| 12. Kubernetes, Helm & Cloud on AWS | 30–31 | Helm charts, a managed-cluster deployment and Terraform modules |
-| 13. Observability, Performance & Production Support | 32–33 | End-to-end tracing, dashboards and alerts, a memory-leak and latency lab |
-| 14. Reactive & High-Throughput Java | 34 | A streaming rates endpoint and a reactive-versus-virtual-threads benchmark |
-| 15. AI Integration with Spring AI | 35 | A grounded support assistant and a transaction-query agent |
-| 16. Capstone, System Design & Interview Prep | 36–37 | ITL Pay `v1.0` (or an approved alternative), deployed, documented and defended |
+| [11. Event-Driven Architecture with Kafka, and Batch Processing](11-event-driven-kafka-batch/README.md) | 28–29 | Event-driven payments, real-time notifications, an audit pipeline and an end-of-day batch |
+| [12. Kubernetes, Helm & Cloud on AWS](12-kubernetes-helm-aws/README.md) | 30–31 | Helm charts, a managed-cluster deployment and Terraform modules |
+| [13. Observability, Performance & Production Support](13-observability-performance/README.md) | 32–33 | End-to-end tracing, dashboards and alerts, a memory-leak and latency lab |
+| [14. Reactive & High-Throughput Java](14-reactive-high-throughput/README.md) | 34 | A streaming rates endpoint and a reactive-versus-virtual-threads benchmark |
+| [15. AI Integration with Spring AI](15-ai-integration-spring-ai/README.md) | 35 | A grounded support assistant and a transaction-query agent |
+| [16. Capstone, System Design & Interview Prep](16-capstone-system-design-interviews/README.md) | 36–37 | ITL Pay `v1.0` (or an approved alternative), deployed, documented and defended |
 
 ## Stack additions
 
@@ -100,10 +98,10 @@ Spring Boot 4.1 with **Spring Cloud 2025.1** (Gateway server WebMvc, Config, Cir
 
 ## End-of-phase assessments
 
-- **Exam:** a 2-hour, 60-question scenario-based CBT on every Phase 3 topic, in week 37. Pass mark 70%.
-- **Capstone defence:** 30 minutes on your system: a demo, an architecture walk-through, questions on your ADRs and a live change ([format and rubric](../../docs/assessments/capstone-defence.md)).
-- **System-design interview:** 45 minutes designing an unfamiliar banking system with a mentor, scored with the same rubric employers use for intermediate roles (Module 16).
-- **Mock interviews:** one technical and one behavioural, with written feedback.
+- **Exam:** a 2-hour, 60-question scenario-based CBT on every Phase 3 topic, in week 37. Pass mark 70% ([exam information](exam/README.md)).
+- **Capstone defence:** 30 minutes on your system: a demo, an architecture walk-through, questions on your ADRs and a live change ([format and rubric](../../docs/assessments/capstone-defence.md#phase-3-the-itl-pay-defence)).
+- **System-design interview:** 45 minutes designing an unfamiliar banking system with a mentor, scored with the same things employers look for in intermediate roles ([format and rubric](../../docs/assessments/system-design-interview.md)).
+- **Mock interviews:** one technical and one behavioural, with written feedback (topic 16.5).
 
 ## Phase 3 exit criteria
 

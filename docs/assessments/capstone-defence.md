@@ -1,6 +1,6 @@
 # Capstone defence (viva)
 
-← [Home](../../README.md) · [Phase 1 capstones](../../phases/01-foundations/capstones/README.md) · [Phase 2 capstones](../../phases/02-professional-backend/capstones/README.md)
+← [Home](../../README.md) · [Phase 1 capstones](../../phases/01-foundations/capstones/README.md) · [Phase 2 capstones](../../phases/02-professional-backend/capstones/README.md) · [Phase 3 capstone](../../phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/README.md)
 
 A capstone counts towards your certificate only after a short **defence**: a 20-minute recorded conversation in which you show that you built it, understand it and can change it. It's the same thing a hiring manager does in a project deep-dive, so it's also your best interview rehearsal. In an age of AI coding assistants it is also how we, and employers, trust that the work is yours. Using AI tools while building is allowed (Module 9 teaches how); not being able to explain or change your own code is not.
 
@@ -39,3 +39,20 @@ If the defence doesn't pass, you get written feedback and can rebook after 7 day
 2. Pick three random files from your repository and explain them aloud to a friend or a recording.
 3. Practise one change request against a timer: change a rule, update the test, run `./mvnw verify`.
 4. Prepare your answer to "what breaks first at 10× load?" (topic 5.6).
+
+## Phase 3: the ITL Pay defence
+
+Phase 3 has one capstone, ITL Pay (or the alternative your mentor agreed), so its defence is longer and goes deeper. It follows topic 16.3 and must pass before the Phase 3 certificate.
+
+- **30 minutes**, camera on, screen shared, the deployed `v1.0` reachable, the dashboard and your repository open. Recorded for moderation. Closed AI, as above.
+- Book it in week 37, once `v1.0` is tagged and deployed.
+
+| Part | Time | What happens |
+| --- | --- | --- |
+| 1. Demo | 5 min | A transfer from request to `POSTED` on the deployed system, then one failure handled (for example fraud rejecting it and the hold released), followed in the dashboard and a trace |
+| 2. Architecture walk-through | 6 min | The C4 context and container diagrams, the transfer saga, and the three ADRs you'd most want a new teammate to read |
+| 3. Code and ADR questions | 7 min | The assessor picks two files and one ADR; you explain them and the alternatives you rejected |
+| 4. Live change | 8 min | A small change through the real path: code and test, a pull request, the pipeline, and the deployed system showing it (or a rollback if it breaks) |
+| 5. Load and operations | 4 min | Your load-test report's main finding, what breaks first at ten times the peak, and one runbook entry walked through |
+
+It's scored with the same rubric (15 points, pass 10, no criterion at "Not yet"). For **Live change**, "Strong" also means the change reached the cluster through the pipeline, and for **Testing and failure** it means showing a failure in the dashboard or a trace, not only in a test.
