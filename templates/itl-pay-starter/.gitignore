@@ -1,0 +1,11 @@
+target/
+.idea/
+*.iml
+.env
+
+# Terraform: providers and modules are downloaded; the lock file is committed
+deploy/terraform/**/.terraform/
+*.tfstate
+*.tfstate.*
+backend.hcl
+*.tfvars

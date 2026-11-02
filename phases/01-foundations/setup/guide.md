@@ -1,0 +1,130 @@
+# Set up your computer (before lesson 0.1)
+
+← [Phase 1](../README.md) · [Week 0: programming on-ramp](../00-programming-on-ramp/README.md) · [Home](../../../README.md)
+
+Before your first program you need two things: **Java** (so the computer can run Java programs) and a **terminal** (a window where you type commands). This page takes about **45 minutes** and assumes nothing. Do it once, on the computer you'll study on.
+
+**You need:** a laptop or desktop with Windows 10 or 11, macOS, or Linux; about 1 GB of free disk space; and an internet connection for the downloads. A phone isn't enough to write programs, but section 6 shows how to try week 0 in a browser while you sort out a computer.
+
+## 1. Words you'll meet straight away
+
+| Word | What it means |
+| --- | --- |
+| **Program** | A list of instructions the computer follows. You write it as text in a file. |
+| **File and folder** | A file holds one thing (a program, a photo); a folder holds files. `Main.java` is a file; `java-course` is a folder. |
+| **Terminal** | A window where you type commands instead of clicking. On Windows it's called *Terminal* or *PowerShell*; on a Mac, *Terminal*. |
+| **Command** | One instruction you type in the terminal, then press **Enter**. For example `java -version`. |
+| **Java, JDK** | Java is the programming language. The **JDK** (Java Development Kit) is the free software that runs Java programs on your computer. |
+| **Editor** | A program for writing text files, such as Notepad. Later (topic 1.1) you'll use **IntelliJ IDEA**, an editor made for Java. |
+| **GitHub** | A website where programmers keep their code and its history. This course's source is on GitHub, and every lesson page links to it ("Source on GitHub"). You can read it without an account now; you'll create your own account in topic 1.2. |
+
+## 2. Windows only: show file extensions
+
+The part of a file name after the dot (`.java`, `.txt`) is its **extension**. Windows hides it by default, which causes the most common week-0 problem: a file that looks like `Main.java` but is really `Main.java.txt`.
+
+- **Windows 11:** open *File Explorer*, click **View → Show → File name extensions**.
+- **Windows 10:** open *File Explorer*, click the **View** tab, tick **File name extensions**.
+
+## 3. Install Java 21
+
+We use **Eclipse Temurin 21**, a free, widely used build of Java.
+
+**Windows**
+
+1. Go to [adoptium.net/temurin/releases](https://adoptium.net/temurin/releases/). Choose **Operating System: Windows**, **Architecture: x64**, **Package Type: JDK**, **Version: 21 - LTS**, and download the **.msi** file.
+2. Run it. On the **Custom Setup** screen, click **Set JAVA_HOME variable** and choose *Will be installed on local hard drive* (leave **Add to PATH** as it is: on). Then click **Next** and **Install**.
+
+**macOS**
+
+Download the **.pkg** from the same page (Operating System **macOS**; Architecture **aarch64** for an Apple M-series chip, **x64** for an older Intel Mac: Apple menu → *About This Mac* tells you which), then open it and follow the installer.
+
+**Linux (Ubuntu)**
+
+```bash
+sudo apt update && sudo apt install openjdk-21-jdk
+```
+
+## 4. Open a terminal and check Java
+
+- **Windows 11:** click Start, type **Terminal**, press Enter.
+- **Windows 10:** click Start, type **PowerShell**, press Enter.
+- **macOS:** press **Cmd + Space**, type **Terminal**, press Enter.
+
+Type this command and press Enter:
+
+```bash
+java -version
+```
+
+You should see a line that starts with `openjdk version "21`. If you do, Java is installed.
+
+**If it says `'java' is not recognized` or `command not found`:** close the terminal and open a new one (it only reads the settings when it starts). Still not working? Run the installer again and check **Add to PATH** is on, then restart the computer.
+
+## 5. Make a folder and run your first program
+
+In the terminal, make a folder for the course and move into it:
+
+```bash
+mkdir java-course
+cd java-course
+mkdir onramp
+cd onramp
+```
+
+`mkdir` makes a folder; `cd` ("change directory") moves into it. Now create the program file:
+
+- **Windows:** open **Notepad**, paste the program below, then **File → Save As**. Go to your user folder → `java-course` → `onramp`, set **Save as type** to **All files (\*.\*)**, name it `Main.java`, and save.
+- **macOS:** open **TextEdit**, choose **Format → Make Plain Text**, paste the program, and save it as `Main.java` in `java-course/onramp` (if TextEdit offers to add `.txt`, choose *Use .java*).
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Welcome to ITLearning Bank");
+    }
+}
+```
+
+Back in the terminal (still in the `onramp` folder), run it:
+
+```bash
+java Main.java
+```
+
+It prints `Welcome to ITLearning Bank`. **You've run your first Java program.** Lesson 0.1 starts from here.
+
+**If it says it can't find `Main.java`:** type `ls` and press Enter to list the files in the folder. If you see `Main.java.txt`, rename it (`ren Main.java.txt Main.java` on Windows, `mv Main.java.txt Main.java` on a Mac). If the folder is empty, the file was saved somewhere else: save it again into `java-course/onramp`.
+
+### Five commands for week 0
+
+| Command | What it does |
+| --- | --- |
+| `cd onramp` | Move into the folder `onramp` |
+| `cd ..` | Move up one folder |
+| `ls` | List the files in the current folder |
+| `pwd` | Show which folder you're in |
+| `java Main.java` | Compile and run `Main.java` |
+
+Two shortcuts save a lot of typing: press **↑** to bring back your last command, and press **Tab** to complete a file or folder name.
+
+## 6. No computer yet? Try week 0 in your browser
+
+[dev.java/playground](https://dev.java/playground/) runs small Java programs in a web browser, so you can follow lessons 0.1 to 0.3 while you sort out a computer. It can't read what you type while a program runs, so do the input exercises once Java is installed. From topic 1.1 onwards you need Java on a computer.
+
+## 7. You're ready when…
+
+- [ ] `java -version` shows version 21.
+- [ ] You ran `Main.java` from the terminal and saw the message.
+- [ ] You can open a terminal and move into your `java-course` folder with `cd`.
+- [ ] (Windows) File extensions are visible in File Explorer.
+
+Then start [lesson 0.1](../00-programming-on-ramp/0.1-first-programs-values-errors/README.md), or take the *Entry check* first if you've programmed before.
+
+**Stuck?** Post in the *Questions and help* forum: say which step, what you typed, and paste the exact message (a screenshot of the terminal is fine), and whether you're on Windows, macOS or Linux. Everyone gets stuck on setup once; it's not a sign you can't do this.
+
+## What comes later
+
+You don't need these yet; each one has its own step-by-step page when you reach it:
+
+- **IntelliJ IDEA**, an editor made for Java: topic 1.1 (week 1).
+- **Git and a GitHub account**: topic 1.2 (week 1).
+- **Docker Desktop**, for databases: [Install Docker Desktop](../docker/README.md) (before week 3).

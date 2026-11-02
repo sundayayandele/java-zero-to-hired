@@ -1,0 +1,76 @@
+# Install Docker Desktop (before week 3)
+
+← [Phase 1](../README.md) · [Set up your computer](../setup/README.md) · [Home](../../../README.md)
+
+From week 3 the practice track's SQL drills, and from week 8 Module 3, run databases (PostgreSQL, Redis, MongoDB) on your own computer. Installing a database the normal way takes an afternoon and leaves it running for ever. **Docker** does it with one command and removes it with another. This page takes about **30 to 60 minutes**, most of it downloading and restarting.
+
+## 1. What Docker is, in plain words
+
+A **container** is a program packaged with everything it needs to run, so it works the same on every computer. An **image** is the package; a container is a running copy of it. **Docker Desktop** is the free app that downloads images and runs containers on your laptop. You'll type commands like `docker run postgres`, and a working database starts in seconds.
+
+Docker Desktop is free for personal use and learning ([licence details](https://www.docker.com/pricing/faq/)).
+
+## 2. Check your computer can run it
+
+- **Memory:** 8 GB of RAM works; with 4 GB it will be very slow. Docker Desktop uses memory while it's running, so quit it when you're not using it.
+- **Disk:** about 5 GB free.
+- **Windows:** Windows 10 or 11, 64-bit. Docker uses a Windows feature called **WSL 2**, which needs **virtualization** switched on in your computer's BIOS (most laptops have it on already; section 5 says what to do if not).
+- **macOS:** a recent macOS version; Apple M-series and Intel Macs are both supported.
+
+## 3. Install it
+
+**Windows**
+
+1. Download **Docker Desktop for Windows** from [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop/).
+2. Run the installer and keep **Use WSL 2 instead of Hyper-V** ticked.
+3. Restart your computer when it asks.
+4. Open **Docker Desktop** from the Start menu and accept the terms. Wait until it says **Engine running** (bottom left).
+
+Microsoft's [WSL installation guide](https://learn.microsoft.com/en-us/windows/wsl/install) and Docker's [Windows install guide](https://docs.docker.com/desktop/setup/install/windows-install/) have screenshots if a step looks different.
+
+**macOS**
+
+Download the version for your chip (**Apple silicon** or **Intel**) from the same page, open the `.dmg`, drag Docker to *Applications*, and open it ([Docker's Mac guide](https://docs.docker.com/desktop/setup/install/mac-install/)).
+
+**Linux (Ubuntu)**
+
+Install **Docker Engine** with [Docker's Ubuntu guide](https://docs.docker.com/engine/install/ubuntu/), then run `sudo usermod -aG docker $USER` and log out and back in, so you can use `docker` without `sudo`.
+
+## 4. Check it works
+
+Open a **new** terminal and run:
+
+```bash
+docker --version
+docker run hello-world
+```
+
+The second command downloads a tiny test image and prints **Hello from Docker!** If you see that, Docker works.
+
+Now start the PostgreSQL database that lesson 3.1 uses, check it's running, and stop it again:
+
+```bash
+docker run -d --name pg -e POSTGRES_PASSWORD=devpass -p 5432:5432 postgres:17-alpine
+docker ps                 # lists running containers: you should see "pg"
+docker stop pg            # stop it
+docker rm pg              # delete it (the image stays, so next time starts quickly)
+```
+
+That's all the Docker you need in Phase 1. Phase 2 teaches it properly: Testcontainers in topic 7.2, and building your own images in topic 8.2.
+
+## 5. If something goes wrong
+
+| Message | What to do |
+| --- | --- |
+| *WSL 2 installation is incomplete* or *WSL needs updating* | Open Terminal **as administrator** (right-click → *Run as administrator*), run `wsl --update`, then restart. |
+| *Virtualization support not detected* | Restart into your computer's BIOS (usually by pressing F2, F10, F12 or Del while it starts; search "enable virtualization" with your laptop's model) and switch on *Intel VT-x*, *SVM* or *Virtualization Technology*. |
+| *Cannot connect to the Docker daemon* or *docker: command not found* | Docker Desktop isn't running: open it and wait for *Engine running*, then open a new terminal. |
+| *port is already allocated* | Something else is using that port, often a container you started earlier: run `docker ps -a`, then `docker rm -f pg`. |
+| Everything is very slow | Close other programs, and quit Docker Desktop when you're not using it. |
+
+**Can't install Docker on your computer?** The Java problems in the practice track don't need it: keep doing those, and ask in the *Questions and help* forum about the SQL drills. A mentor can suggest an alternative for your machine.
+
+## You're ready when…
+
+- [ ] `docker run hello-world` prints *Hello from Docker!*
+- [ ] You started, listed, stopped and removed the `pg` container.

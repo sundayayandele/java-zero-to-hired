@@ -1,0 +1,133 @@
+# ITL Pay locally: ./mvnw -q package -DskipTests && docker compose up --build
+# Only the gateway (8080) and Grafana (3300) publish ports; the services reach each other by name.
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.1-pg18-trixie   # PostgreSQL 18 with the pgvector extension (topic 15.2)
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 2s
+      retries: 30
+
+  kafka:
+    image: apache/kafka:4.1.1
+    environment:                                   # one broker that is also its own KRaft controller
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"     # topics are declared, with their partition count, by the services (topic 11.1)
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 > /dev/null"]
+      interval: 5s
+      retries: 30
+
+  redis:
+    image: redis:8-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      retries: 30
+
+  # Grafana, Prometheus, Tempo and an OpenTelemetry collector in one container, for local use (Module 13)
+  observability:
+    image: grafana/otel-lgtm:0.38.1
+    ports:
+      - "3300:3000"                                # Grafana: http://localhost:3300 (admin / admin); 3300 avoids clashing with dev servers on 3000
+    volumes:
+      - ./observability/prometheus.yaml:/otel-lgtm/prometheus.yaml:ro
+      - ./observability/alerts.yaml:/otel-lgtm/itl-pay-alerts.yaml:ro
+      - ./observability/dashboards.yaml:/otel-lgtm/grafana/conf/provisioning/dashboards/itl-pay.yaml:ro
+      - ./observability/dashboards:/otel-lgtm/itl-pay-dashboards:ro
+
+  accounts:
+    build: ./accounts
+    environment:
+      OTLP_ENDPOINT: http://observability:4318
+      LOGGING_STRUCTURED_FORMAT_CONSOLE: ecs       # JSON logs with trace ids (topic 13.2)
+  transfers:
+    build: ./transfers
+    environment:
+      ACCOUNTS_URL: http://accounts:8081
+      DB_URL: jdbc:postgresql://postgres:5432/transfers
+      KAFKA_BOOTSTRAP: kafka:9092
+      REDIS_HOST: redis
+      OTLP_ENDPOINT: http://observability:4318
+      LOGGING_STRUCTURED_FORMAT_CONSOLE: ecs
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+      redis: { condition: service_healthy }
+  fraud:
+    build: ./fraud
+    environment:
+      KAFKA_BOOTSTRAP: kafka:9092
+      OTLP_ENDPOINT: http://observability:4318
+      LOGGING_STRUCTURED_FORMAT_CONSOLE: ecs
+    depends_on:
+      kafka: { condition: service_healthy }
+  notifications:
+    build: ./notifications
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/notifications
+      KAFKA_BOOTSTRAP: kafka:9092
+      OTLP_ENDPOINT: http://observability:4318
+      LOGGING_STRUCTURED_FORMAT_CONSOLE: ecs
+    depends_on:
+      postgres: { condition: service_healthy }
+      kafka: { condition: service_healthy }
+  rates:
+    build: ./rates
+    environment:
+      DB_HOST: postgres
+      OTLP_ENDPOINT: http://observability:4318
+      LOGGING_STRUCTURED_FORMAT_CONSOLE: ecs
+    depends_on:
+      postgres: { condition: service_healthy }
+  # Ollama runs on your machine, not in Compose: natively it can use your GPU, and the models stay downloaded (topic 15.1)
+  assistant:
+    build: ./assistant
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/assistant
+      OLLAMA_URL: http://host.docker.internal:11434
+      ACCOUNTS_URL: http://accounts:8081
+      TRANSFERS_URL: http://transfers:8082
+      RATES_URL: http://rates:8085
+      OTLP_ENDPOINT: http://observability:4318
+      LOGGING_STRUCTURED_FORMAT_CONSOLE: ecs
+    extra_hosts:
+      - host.docker.internal:host-gateway          # Docker Desktop has this name already; Linux needs this line
+    depends_on:
+      postgres: { condition: service_healthy }
+  gateway:
+    build: ./gateway
+    environment:
+      ACCOUNTS_URL: http://accounts:8081
+      TRANSFERS_URL: http://transfers:8082
+      RATES_URL: http://rates:8085
+      ASSISTANT_URL: http://assistant:8087
+      OTLP_ENDPOINT: http://observability:4318
+      LOGGING_STRUCTURED_FORMAT_CONSOLE: ecs
+    ports:
+      - "8080:8080"
+    depends_on: [accounts, transfers, rates, assistant]
+
+  # A batch job, not a server: it runs when asked and exits.
+  # docker compose run --rm interest-batch businessDate=2026-10-30
+  interest-batch:
+    build: ./interest-batch
+    profiles: [batch]
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/interest
+    depends_on:
+      postgres: { condition: service_healthy }

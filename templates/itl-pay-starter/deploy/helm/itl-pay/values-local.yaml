@@ -1,0 +1,15 @@
+# kind on your laptop: helm upgrade --install itl-pay deploy/helm/itl-pay -n itl-pay -f deploy/helm/itl-pay/values-local.yaml
+databases:
+  createSecret: true
+  passwords:                   # development passwords, matching deploy/infra/postgres.yaml
+    transfers: transfers
+    notifications: notifications
+    interest: interest
+    rates: rates
+    assistant: assistant
+services:
+  assistant:
+    env:                       # Ollama on your machine, reached from the kind node (Docker Desktop's host name)
+      OLLAMA_URL: http://host.docker.internal:11434
+route:
+  enabled: true
