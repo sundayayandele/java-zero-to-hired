@@ -206,8 +206,8 @@ Projects: Customer-support assistant grounded in your API docs; Transaction-quer
 - [16.1 Capstone build: digital wallet, loan origination, marketplace or logistics backend](phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/16.1-capstone-build/README.md)
 - [16.2 Live deployment on Kubernetes with CI/CD; ADRs, runbook and architecture diagrams](phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/16.2-deployment-adrs-runbook/README.md)
 - [16.3 Observability dashboard and load-test report](phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/16.3-observability-and-load-report/README.md)
-- [16.4 System-design interview practice and STAR stories](phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/16.4-system-design-interviews/README.md)
-- [16.5 Two mock interviews: technical and behavioural](phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/16.5-mock-interviews/README.md)
+- [16.4 System-design interview practice](phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/16.4-system-design-interviews/README.md)
+- [16.5 Two mock interviews, technical and behavioural, with STAR stories](phases/03-enterprise-cloud-native/16-capstone-system-design-interviews/16.5-mock-interviews/README.md)
 
 Projects: Digital wallet & payments platform; Loan origination system; Marketplace backend; Ride-hailing / logistics backend.
 

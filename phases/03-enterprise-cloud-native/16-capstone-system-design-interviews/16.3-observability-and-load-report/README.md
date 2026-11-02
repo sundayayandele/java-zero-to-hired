@@ -3,7 +3,7 @@
 
 # 16.3 Observability dashboard and load-test report
 
-← [16.2 Live deployment on Kubernetes with CI/CD; ADRs, runbook and architecture diagrams](../16.2-deployment-adrs-runbook/README.md) · [Module 16](../README.md) · [Phase 3](../../README.md) · [16.4 System-design interview practice and STAR stories](../16.4-system-design-interviews/README.md) →
+← [16.2 Live deployment on Kubernetes with CI/CD; ADRs, runbook and architecture diagrams](../16.2-deployment-adrs-runbook/README.md) · [Module 16](../README.md) · [Phase 3](../../README.md) · [16.4 System-design interview practice](../16.4-system-design-interviews/README.md) →
 
 > **Week 37** · Module 16: Capstone, System Design & Interview Prep · Website topic covered: *An observability dashboard and a load-test report with findings and fixes*
 

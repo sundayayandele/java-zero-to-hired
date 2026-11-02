@@ -12,8 +12,8 @@
 | [16.1 Capstone build: digital wallet, loan origination, marketplace or logistics backend](16.1-capstone-build/README.md) | 36 | Finish the capstone system (digital wallet, loan origination, marketplace or logistics backend) |
 | [16.2 Live deployment on Kubernetes with CI/CD; ADRs, runbook and architecture diagrams](16.2-deployment-adrs-runbook/README.md) | 36 | Live deployment on Kubernetes with CI/CD, architecture decision records, a runbook and architecture diagrams |
 | [16.3 Observability dashboard and load-test report](16.3-observability-and-load-report/README.md) | 37 | An observability dashboard and a load-test report with findings and fixes |
-| [16.4 System-design interview practice and STAR stories](16.4-system-design-interviews/README.md) | 37 | System-design interview practice for intermediate roles, and STAR stories from your capstone |
-| [16.5 Two mock interviews: technical and behavioural](16.5-mock-interviews/README.md) | 37 | Two mock interviews, technical and behavioural, with written feedback |
+| [16.4 System-design interview practice](16.4-system-design-interviews/README.md) | 37 | System-design interview practice for intermediate roles, and STAR stories from your capstone |
+| [16.5 Two mock interviews, technical and behavioural, with STAR stories](16.5-mock-interviews/README.md) | 37 | Two mock interviews, technical and behavioural, with written feedback |
 
 ## What this module gives you
 
