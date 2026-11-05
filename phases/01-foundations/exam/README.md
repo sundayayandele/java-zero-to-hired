@@ -11,7 +11,7 @@
 | Pass mark | **70%** |
 | Attempts | 2, at least 48 hours apart; highest grade counts |
 | Order | Questions and answer options are shuffled for every attempt |
-| Resources | Closed book. No IDE, no AI assistants, no notes |
+| Resources | Closed book. No IDE, no AI assistants, no notes. **From 1 December 2026, taken in [Safe Exam Browser](../../../docs/assessments/safe-exam-browser.md)** (Windows, macOS or iPad) |
 | Review | Correct answers and explanations are shown after the exam closes for the cohort |
 
 ## Blueprint

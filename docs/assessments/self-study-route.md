@@ -60,7 +60,7 @@ Then add a **Defence** section to your README with the link to the video, the ch
 
 ## 3. Timed coding test (Phases 1 and 2)
 
-On itlearning.tech, in the end-of-phase section: three Java problems in **60 minutes**, auto-graded in the browser like the coding practice quiz. Pass with 2 of the 3. You can retake it after 7 days. No IDE, no AI assistants and no other tabs: treat it as an exam.
+On itlearning.tech, in the end-of-phase section: three Java problems in **60 minutes**, auto-graded in the browser like the coding practice quiz. Pass with 2 of the 3. You can retake it after 7 days. No IDE, no AI assistants and no other tabs: treat it as an exam. **From 1 December 2026, the timed coding test and every end-of-phase exam are taken in [Safe Exam Browser](safe-exam-browser.md)**, on a Windows or macOS computer (or an iPad).
 
 ## 4. Recorded system design and interview answers (Phase 3)
 
