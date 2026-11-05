@@ -89,5 +89,5 @@ The Oracle Java SE exams are fully covered by Phase 1. Phases 2 and 3 move into 
 ## Sources
 
 - [Getting Started with Java Certification (dev.java, by Oracle's Java team)](https://dev.java/learn/java-cert-overview/)
-- [1Z0-831 OCP Java 25 exam objectives (Enthuware)](https://enthuware.com/oca-ocp-java-certification-resources/297-ocp-java-25-exam-syllabus)
+- [1Z0-831 OCP Java 25 exam objectives (Enthuware)](https://enthuware.com/java-certification-mock-exams/oracle-certified-professional/ocp-java-25-exam-1z0-831): the objectives are listed on the page for Enthuware's mock exams, which are paid and optional
 - [Oracle certification (oracle.com)](https://www.oracle.com/education/certification/), the entry point to Oracle University's Java exams. Search there for **1Z0-830** (Java SE 21) or **1Z0-831** (Java SE 25); Oracle University's own exam pages were down for maintenance on 23 and 29 October 2026
