@@ -11,7 +11,7 @@ Every phase has two certificates. You can earn either; the work you do for both 
 | Showing the capstone is yours | A **recorded defence** on GitHub, plus **code checks** | A live defence with a mentor |
 | Coding under time pressure (Phases 1 and 2) | A **timed coding test** on itlearning.tech | A live-coding assessment with a mentor |
 | System design and interviews (Phase 3) | **Recorded answers** on GitHub | A live system-design interview and two live mock interviews |
-| Feedback | A mentor quick-checks each recording within **15 working days** | Live feedback from your mentor |
+| Feedback | The administrator quick-checks each recording within **15 working days** of your message | Live feedback from your mentor |
 
 You can start on the self-study route and upgrade later: your quizzes, projects, capstones and exam carry over, and you only book the live assessments.
 
@@ -71,6 +71,6 @@ Record these the same way and link them from your README:
 
 ## 5. Submitting and the quick check
 
-On itlearning.tech, submit **Recorded defence and code checks (self-study)** with the links to your README section, the video and the green code-checks run (Phase 3 has two more submissions, for the recorded system design and interview answers). A mentor checks each submission within **15 working days**: is it you, is it your repository, does the change work, and do you understand what you show. If something's missing, you get a note and can submit again; there's no fee either way.
+On itlearning.tech, submit **Recorded defence and code checks (self-study)** with the links to your README section, the video and the green code-checks run (Phase 3 has two more submissions, for the recorded system design and interview answers). Then **send the administrator a message** on itlearning.tech asking for your check: say which course and which submission. The administrator checks each submission within **15 working days**: is it you, is it your repository, does the change work, and do you understand what you show. If something's missing, you get a note and can submit again; there's no fee either way.
 
 When everything for your phase has passed, your self-study certificate is issued and emailed automatically.
