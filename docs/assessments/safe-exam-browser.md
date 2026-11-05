@@ -2,7 +2,7 @@
 
 ← [Home](../../README.md) · [The self-study route](self-study-route.md)
 
-**From 1 December 2026**, every end-of-phase exam and every timed coding test on itlearning.tech must be taken in **Safe Exam Browser (SEB)**, a free browser that locks your computer to the exam: no other apps, websites or AI assistants while it runs. Topic quizzes and the coding practice quiz don't need it.
+**From 1 December 2026**, every end-of-phase exam and every timed coding test on itlearning.tech must be taken in **Safe Exam Browser (SEB)**, a free browser that locks your computer to the exam: no other apps, websites or AI assistants while it runs. The **AI-Mastery Basics final assessment** already needs it. Topic quizzes and the coding practice quiz don't.
 
 ## What you need
 
