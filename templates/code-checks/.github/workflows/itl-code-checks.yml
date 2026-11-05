@@ -1,0 +1,62 @@
+# ITLearning code checks for the self-study certificate route.
+# Copy this file to .github/workflows/ in your capstone repository, push, and submit the link to a green run.
+# Guide: https://github.com/sundayayandele/java-zero-to-hired/blob/main/docs/assessments/self-study-route.md
+name: itl-code-checks
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build and tests pass
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with: { distribution: temurin, java-version: "21", cache: maven }
+      - name: Build and run every test (Testcontainers included)
+        run: |
+          chmod +x mvnw
+          ./mvnw -B verify
+      - name: Count the tests that ran
+        if: always()
+        run: |
+          tests=$(find . \( -path '*/surefire-reports/TEST-*.xml' -o -path '*/failsafe-reports/TEST-*.xml' \) -print0 \
+                  | xargs -0 -r grep -ho '<testsuite [^>]*' | grep -o ' tests="[0-9]*"' | grep -o '[0-9]*' | awk '{s+=$1} END {print s+0}')
+          echo "Tests run: $tests" | tee -a "$GITHUB_STEP_SUMMARY"
+          [ "$tests" -ge 15 ] || { echo "::error::At least 15 tests must run; found $tests"; exit 1; }
+
+  no-secrets:
+    name: No secrets in the history
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with: { fetch-depth: 0 }
+      - name: gitleaks over every commit
+        run: |
+          docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:v8.28.0 git /repo --redact --no-banner
+
+  history:
+    name: Work spread over the weeks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with: { fetch-depth: 0 }
+      - name: Commits on at least 10 different days, over at least 3 weeks
+        run: |
+          days=$(git log --format=%ad --date=short | sort -u | wc -l)
+          first=$(git log --reverse --format=%ad --date=short | head -1)
+          last=$(git log --format=%ad --date=short | head -1)
+          span=$(( ( $(date -d "$last" +%s) - $(date -d "$first" +%s) ) / 86400 ))
+          commits=$(git rev-list --count HEAD)
+          {
+            echo "Commits: $commits"
+            echo "Days with commits: $days"
+            echo "First commit: $first; last commit: $last ($span days)"
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+          [ "$days" -ge 10 ] || { echo "::error::Commits on only $days different days (need 10 or more)"; exit 1; }
+          [ "$span" -ge 21 ] || { echo "::error::The history spans $span days (need 21 or more)"; exit 1; }
